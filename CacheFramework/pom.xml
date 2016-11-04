@@ -23,6 +23,16 @@
             <artifactId>commons-math3</artifactId>
             <version>3.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.ingenias</groupId>
+            <artifactId>jade</artifactId>
+            <version>4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.8</version>
+        </dependency>
     </dependencies>
 
 </project>
