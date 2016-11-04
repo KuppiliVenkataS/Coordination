@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  * The following class contains data about a query for one time window (uLoc_frequency)
- * But contains information
+ * But contains information about
  */
 public class QueryData implements CacheProperties{
     String qId;

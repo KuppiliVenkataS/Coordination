@@ -2,158 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2741fc24-7170-4e1a-b560-6147a01210b1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/Attribute.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/DatabaseServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/QATool.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/QATool_Tarun.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/QATool_tarun.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/Table.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MainClasses/CacheDataServerMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MainClasses/CacheProperties.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MainClasses/CommunityCacheMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MainClasses/CommunityCacheMain_LRU.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MainClasses/PropertiesLoaderImplBase.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MainClasses/SimpleMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/Cache.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/EA/CentralDataAnalysisServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/EA/DistributedCachedQueries.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/EA/PerformanceParameters.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/EA/SuperQueryIndex.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/GreedyImpl/StaticImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/CacheUnit.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/DataUnitOptimisation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/HeuristicApproach.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/Node.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/Objectives.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/QueryData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/CacheMaintenance/SampleEA/RuleTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/Container.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/Bag.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/Cache_Reply.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/Graph.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/IndexedQuery.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/Pennant.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/QueryIndex.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/StatusQuery.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/QueryIndexFiles/UpdatedData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/Threshold.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/MiddlewareEnvironment/ThresholdCriteria.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/Network/NetworkConstants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/Network/NetworkTopography.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/ExprTreeNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/ExpressionTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/PredicateQuerySegment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Query.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions2_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions2_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions3_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions3_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions4_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions4_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions5_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/20PC_QueryExpressions5_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/Cache_output.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions1_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions1_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions2_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions2_40PC_old_Overlap" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions2_40PC_old_Overlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions2_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions2_60PC_old_Overlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions3_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions3_40PC_old_Overlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions3_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions3_60PC_old_Overlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions4_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions4_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions5" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions5_40PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryExpressions5_60PCOverlap_10000" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryGenerator_20PC.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/QueryGenerator_output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/Query_type.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/SlowChange/QueryGenerator_slowChangeConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/Time_type.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/VerticalExpansion/Sample10Queries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryInput/generatedFile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryModelling_Input/QueryGenerator1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryOutput/.Rhistory" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QueryOutput/.~lock.test.csv#" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/QuerySegment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Query_Attribute_condition.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Query_Subj_Predicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Querycriteria.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/QueryExpressions" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/QueryExpressions1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/QueryGenerator_SubjPred.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/Test.xls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/Test1.xls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/generatedFile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/generatedFile1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/inputFile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/inputPredicateFile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/outFile.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/queryFile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/Subj_PredicateSpecificQueries/segmentFile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/QueryEnvironment/SubjectQuerySegment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/Cache_DataServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/Cache_State3.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/DataServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/InterWANDataTransfers_State5.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/LANQuerytransfer_State4.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/QueryTransferOnWAN_State2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/Query_Response_DataServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/ReplyUser_State6.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/Cache_DataServerSimulation/UserInput_State1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/CacheProcessing_State3.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/CacheResultOnLAN_State4.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/DataServer_State7.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/DataTransferOnWAN_State8.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/QuerySentOnLAN_State2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/QueryTransferOnWAN_State6.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/Query_Response.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/RemainingQueryExecution_State5.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/ResultAggregation_State9.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/ResponseTimeSimulation/CommunityCache_Response/StartState_State1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/BadDecisionException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/ClassifierTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/EATree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/EATreeNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/Link.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/RuleTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/EAImplementation/TestId3.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/Algorithm.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/DecisionTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/DecisionTreeNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/Decisions.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/Examples.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/ID3Algorithm.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/ID3/UnknownDecisionException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/MethodOverloading.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/RuleLearning/Classifier.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/RuleLearning/Rule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/RuleLearning/RuleTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/RuleLearning/TreeNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/project/SimpleTests/States.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/project/SimpleTests/Static_Final.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/project/SimpleTests/Thing.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SimpleTests/project/SimpleTests/Things.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SupportSystem/DeepClone.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SupportSystem/MapUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/SupportSystem/ThingToDo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/UserEnvironment/QuerySegment_ExecutionTime.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/UserEnvironment/Query_ExecutionTime.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/UserEnvironment/User.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/Project/UserEnvironment/UserAgent.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/CacheProperties.java" afterPath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/CacheProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/SimpleMain.java" afterPath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/SimpleMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java" afterPath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/SampleEA/QueryData.java" afterPath="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/SampleEA/QueryData.java" />
     </list>
     <ignored path="Coordination.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -176,27 +29,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="QueryGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/QueryGenerator.java">
+      <file leaf-file-name="ResponseTime.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#259#260#0" expanded="true" />
+                <element signature="e#308#309#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResponseTime.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java">
+      <file leaf-file-name="SuperQueryIndex.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/EA/SuperQueryIndex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="261">
+              <caret line="248" column="66" selection-start-line="248" selection-start-column="66" selection-end-line="248" selection-end-column="66" />
               <folding>
-                <element signature="e#197#198#0" expanded="true" />
-                <element signature="e#246#247#0" expanded="true" />
+                <element signature="e#2432#2433#0" expanded="true" />
+                <element signature="e#2474#2475#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CacheProperties.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/CacheProperties.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -204,9 +68,15 @@
       <file leaf-file-name="SimpleMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/SimpleMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="231">
+              <caret line="180" column="64" selection-start-line="180" selection-start-column="64" selection-end-line="180" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#checkState3#0;class#SimpleMain#0" expanded="false" />
+                <element signature="method#checkState3#0;class#SimpleMain#0" expanded="false" />
+                <element signature="docComment;method#checkState4#0;class#SimpleMain#0" expanded="false" />
+                <element signature="method#checkState4#0;class#SimpleMain#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -227,12 +97,14 @@
         <option value="$PROJECT_DIR$/QGen/src/main/java/SimpleGui/ConfigurationClass.java" />
         <option value="$PROJECT_DIR$/QGen/src/main/java/SimpleGui/MainFrame.java" />
         <option value="$PROJECT_DIR$/QGen/src/main/java/SimpleGui/QueryGenerator.java" />
-        <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java" />
         <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/QueryEnvironment/Query_Subj_Predicate.java" />
         <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/DatabaseInfo/DatabaseServer.java" />
         <option value="$PROJECT_DIR$/CacheFramework/pom.xml" />
-        <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/SimpleMain.java" />
         <option value="$PROJECT_DIR$/QGen/pom.xml" />
+        <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java" />
+        <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/SampleEA/QueryData.java" />
+        <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/CacheProperties.java" />
+        <option value="$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/SimpleMain.java" />
       </list>
     </option>
   </component>
@@ -329,6 +201,116 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="QGen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QGen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QGen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QGen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SimpleGui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QGen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Coordination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="CacheFramework" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -402,38 +384,8 @@
               <option name="myItemId" value="project" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CacheFramework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SimpleTests" />
+              <option name="myItemId" value="UserEnvironment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -464,86 +416,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SimpleTests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EAImplementation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CacheFramework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QueryEnvironment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CacheFramework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QueryEnvironment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Subj_PredicateSpecificQueries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -618,46 +490,8 @@
               <option name="myItemId" value="CacheMaintenance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coordination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CacheFramework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MiddlewareEnvironment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CacheMaintenance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GreedyImpl" />
+              <option name="myItemId" value="SampleEA" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -698,10 +532,6 @@
               <option name="myItemId" value="CacheMaintenance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EA" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -733,15 +563,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="MiddlewareEnvironment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CacheMaintenance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoordinationStrategies" />
+              <option name="myItemId" value="MainClasses" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -766,7 +588,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/CacheFramework/src/main/java" />
   </component>
-  <component name="RunManager" selected="Application.ResponseTime">
+  <component name="RunManager" selected="Application.SimpleMain">
     <configuration default="false" name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -795,6 +617,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies.ResponseTime" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CacheFramework" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SimpleMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="project.MainClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="project.MainClasses.SimpleMain" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1051,14 +893,16 @@
       <listeners />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.MainFrame" />
       <item index="1" class="java.lang.String" itemvalue="Application.ResponseTime" />
+      <item index="2" class="java.lang.String" itemvalue="Application.SimpleMain" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.ResponseTime" />
-        <item index="1" class="java.lang.String" itemvalue="Application.MainFrame" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.SimpleMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ResponseTime" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MainFrame" />
       </list>
     </recent_temporary>
   </component>
@@ -1077,31 +921,31 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="-4" width="1857" height="1204" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295238" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295238" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295238" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24958587" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2447619" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295238" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14743236" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295238" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16123688" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1151,34 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="360" column="14" selection-start-line="360" selection-start-column="13" selection-end-line="360" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/ConfigurationClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/DistributedEnvironment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="113" column="43" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/Project/DatabaseInfo/Attribute.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1192,16 +1008,6 @@
         <state relative-caret-position="105">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/QueryGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1331,17 +1137,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#197#198#0" expanded="true" />
-            <element signature="e#246#247#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/QGen/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -1350,11 +1145,123 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2889">
+          <caret line="360" column="14" selection-start-line="360" selection-start-column="13" selection-end-line="360" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/ResponseTimeSimulation/CommunityCache_Response/CacheProcessing_State3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/CommunityCacheMain_LRU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2460">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/SampleEA/QueryData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/QueryGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/DistributedEnvironment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="113" column="43" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/ConfigProperties.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/CoordinationStrategies/ResponseTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MiddlewareEnvironment/CacheMaintenance/EA/SuperQueryIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="248" column="66" selection-start-line="248" selection-start-column="66" selection-end-line="248" selection-end-column="66" />
+          <folding>
+            <element signature="e#2432#2433#0" expanded="true" />
+            <element signature="e#2474#2475#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/NetworkConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QGen/src/main/java/SimpleGui/ConfigurationClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/CacheProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CacheFramework/src/main/java/project/MainClasses/SimpleMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="231">
+          <caret line="180" column="64" selection-start-line="180" selection-start-column="64" selection-end-line="180" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#checkState3#0;class#SimpleMain#0" expanded="false" />
+            <element signature="method#checkState3#0;class#SimpleMain#0" expanded="false" />
+            <element signature="docComment;method#checkState4#0;class#SimpleMain#0" expanded="false" />
+            <element signature="method#checkState4#0;class#SimpleMain#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

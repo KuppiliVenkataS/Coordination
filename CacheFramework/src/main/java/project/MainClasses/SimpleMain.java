@@ -100,15 +100,18 @@ public class SimpleMain implements CacheProperties, NetworkConstants{
      * Queryindexes are implemented as peer to peer
      */
     public SimpleMain(){
+
         //setting architecture
         XStream xstream = new XStream(new StaxDriver());
         this.cfgClass = (ConfigurationClass) xstream.fromXML(configFile);
         this.numbLANs = this.cfgClass.getDistributedEnvironment().getNumbLANs();
+
         this.numbDatabases = this.cfgClass.getDistributedEnvironment().getDatabaseSchema().length;
         this.cacheUnitsPerLAN = this.cfgClass.getDistributedEnvironment().getCacheUnitsPerLAN();
         this.userGroupsPerLAN = this.cfgClass.getDistributedEnvironment().getUserGroupsPerLAN();
 
         this.sqda = new SuperQueryIndex();
+        queryIndex = new QueryIndex[numbLANs];
 
         //create queryIndex[] and add caches to query Index
         for (int i = 0; i < numbLANs; i++) {
@@ -175,7 +178,7 @@ public class SimpleMain implements CacheProperties, NetworkConstants{
             String str = in.readLine();
             if(str == null) break;
 
-            String[] queryFragments = str.split(Pattern.quote("@"));
+            String[] queryFragments = str.split(Pattern.quote(","));
             Query_Response qr = new Query_Response(Integer.parseInt(queryFragments[0]),queryFragments[2],
                     queryFragments[1]);
 
@@ -1127,26 +1130,33 @@ public class SimpleMain implements CacheProperties, NetworkConstants{
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println("How many epochs you want to scan?");
-        int numFiles = (new Scanner(System.in)).nextInt();
+       // System.out.println("How many epochs you want to scan?");
+        //int numFiles = (new Scanner(System.in)).nextInt();
+
+        int numFiles = 3; // PLEASE REMOVE THE
+
+        int[] numQueriesArray = {1000,2500,5000,10000};
 
         for (int i = 0; i < numFiles; i++) {
-            File inputFile = new File(INPUT_FILE_Part1+i+INPUT_FILE_Part2);
+                for (int numQueriesIndex = 0; numQueriesIndex < numQueriesArray.length; numQueriesIndex++) {
+                    //File inputFile = new File(INPUT_FILE_Part1+i+INPUT_FILE_Part2);
+                    File inputFile = new File("//home//santhilata//Desktop//Input//input"+numQueriesArray[numQueriesIndex]+"_"+(i+1)+".csv");
+                   // System.out.println(inputFile.getName());
 
-            SimpleMain simpleMain = new SimpleMain();//sets Architecture
-            simpleMain.readQueriesFromFile(inputFile);   // reading queries, arrival times and user locations
+                    SimpleMain simpleMain = new SimpleMain();//sets Architecture
+                    simpleMain.readQueriesFromFile(inputFile);   // reading queries, arrival times and user locations
 
-            // To collect meta data
-            File metadataFile = new File(METADATA_FILE_Part1+i+METADATA_FILE_Part2);
-            //DistributedCachedQueries dcq = new DistributedCachedQueries();
-            //dcq.setStatisticsFile(metadataFile);
-            //dcq.generateMetaDataStatisticsPerEpoch(simpleMain.getQueryIndex());
-            simpleMain.collectDataIntoFile(metadataFile);
+                    // To collect meta data
+                    File metadataFile = new File(METADATA_FILE_Part1 + i + METADATA_FILE_Part2);
+                    //DistributedCachedQueries dcq = new DistributedCachedQueries();
+                    //dcq.setStatisticsFile(metadataFile);
+                    //dcq.generateMetaDataStatisticsPerEpoch(simpleMain.getQueryIndex());
+                    simpleMain.collectDataIntoFile(metadataFile);
 
+
+            }
 
         }
-
-
 
 
 

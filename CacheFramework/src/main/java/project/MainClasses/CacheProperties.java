@@ -7,11 +7,11 @@ import java.util.ArrayList;
  * Created by santhilata on 9/4/16.
  */
 public interface CacheProperties {
-    public static final File configFile =  new File("//home//santhilata//Dropbox//CacheLearning//QGen//src//main//java//SimpleGui//ConfigProperties.xml");
-    public static final String INPUT_FILE_Part1 ="~/Dropbox/CacheLearning//QGen//src//main//java//QueryInput//";
+    public static final File configFile =  new File("//home//santhilata//Dropbox//CL1//Coordination//QGen//src//main//java//SimpleGui//ConfigProperties.xml");
+    public static final String INPUT_FILE_Part1 ="~/Dropbox//CL1//Coordination//QGen//src//main//java//QueryInput//";
     public static final String INPUT_FILE_Part2 ="_queryRepeat_10.csv";
 
-    public static final String METADATA_FILE_Part1 = "~/Dropbox/CacheLearning//QGen//src//main//java//MetaDataFiles//Epoch_";
+    public static final String METADATA_FILE_Part1 = "~/Dropbox//CL1//Coordination//QGen//src//main//java//MetaDataFiles//Epoch_";
     public static final String METADATA_FILE_Part2 = ".csv";
 
 
