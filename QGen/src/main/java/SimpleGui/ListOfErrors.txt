@@ -1,0 +1,7 @@
+1. Reset button in query input tab is throwing errors
+2. For Query repetition and sub-query repetition, user defined mean, variance, etc should be defined
+3. Not implemented query repetition at the moment
+4. How to read queries from the input file - there are three values separated by ","
+4.1: first value is the query arrival time
+4.2: second value is the user location
+4.3: Third value is the query itself

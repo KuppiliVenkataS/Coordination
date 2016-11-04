@@ -1,0 +1,49 @@
+Copyright (C) <2016>  <Santhilata Kuppili Venkata>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Version 1.0
+
+MainFrame.java is the main file to be opened.
+
+There are two tabs - 1. Distributed Environment (hence forth DE) and 2. Query Input (hence forth QI).
+
+DE: This tab contains the configuration details for database(s) schema(s) and distributed environment and Network configuration details.
+First time users may need to enter the database schema by click to enter details. This will open to another frame that allows you to add database details.
+
+Please remember to enter number of multiple databases you are trying to enter.
+Each row in the table in this frame should have table name on the left handside column and attributes to be entered separated by comma.
+At the moment there is provision to  enter 20 tables with 20*20 attributes. If need be, more facilities will be added in  later versions.
+IMPORTANT: Please remember to select an empty cell after adding all tables and attributes names. Otherwise, the selected cell's values are not going to be added.
+This is a bug and will be handled in V2. Save one database at a time.
+Finally after adding all databases carefully please click the 'Generate XML file' which will generate a serialized file for portability
+and allows you to save that file at a location of your choice. You can use this schema file later to generate workloads.
+
+Now, in the DE, please add other details. Otherwise, current default values will be considered for generating distributed environment.
+
+
+QI Tab:
+The second tab is Query inp[ut (QI)
+
+QI generates one set of workload at a time. You may decide to divide your workload into number of epochs. This depends upon the variations
+you would love to have in your workload. Once you select number of epochs, it will open a table of combo boxes for you to select for each epoch.
+Enter the query arrival distribution from the given distributions, no.of queries for that epoch, the query repetition distribution and sub-query repetition.
+Reset and Exit buttons are self explanatory. You can check the entered values in the table displayed next. If you want to change, you may do so.
+
+Then click on the Generate workload button. This will generate one set of queries.
+
+This is a preliminary working model and later versions will be made according to the needs that may arise.
+
+
