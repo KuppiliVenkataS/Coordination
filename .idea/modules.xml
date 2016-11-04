@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CacheFramework/CacheFramework.iml" filepath="$PROJECT_DIR$/CacheFramework/CacheFramework.iml" />
       <module fileurl="file://$PROJECT_DIR$/Coordination.iml" filepath="$PROJECT_DIR$/Coordination.iml" />
       <module fileurl="file://$PROJECT_DIR$/QGen/QGen.iml" filepath="$PROJECT_DIR$/QGen/QGen.iml" />
     </modules>

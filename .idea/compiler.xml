@@ -21,11 +21,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="CacheFramework" />
         <module name="QGen" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="QGen" target="1.8" />
+      <module name="CacheFramework" target="1.5" />
+      <module name="QGen" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
