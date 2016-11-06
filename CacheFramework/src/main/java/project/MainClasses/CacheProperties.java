@@ -11,7 +11,7 @@ public interface CacheProperties {
     public static final String INPUT_FILE_Part1 ="~/Dropbox//CL1//Coordination//QGen//src//main//java//QueryInput//";
     public static final String INPUT_FILE_Part2 ="_queryRepeat_10.csv";
 
-    public static final String METADATA_FILE_Part1 = "~/Dropbox//CL1//Coordination//QGen//src//main//java//MetaDataFiles//Epoch_";
+    public static final String METADATA_FILE_Part1 = "//home//santhilata//Dropbox//CL1//Coordination//CacheFramework//src//main//java//MetaDataFiles//Epoch_";
     public static final String METADATA_FILE_Part2 = ".csv";
 
 
