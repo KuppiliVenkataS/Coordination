@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * Created by santhilata on 06/11/16.
  */
-public class Input {
+public class Input implements InputParameters{
     ArrayList<Query_Coord> input_queries ;
     ArrayList<Query_Coord> seedQueries;
 
@@ -16,23 +16,42 @@ public class Input {
         input_queries =  new ArrayList<>();
         for (int i = 0; i < numQueries; i++) {
 
-           /*
-           //queries are repeated in poisson distribution
-           int loc = new Random().nextInt(numLoc);
 
-            int seedValue =  new PoissonDistribution(seed/2).sample();
-            //System.out.println(seedValue);
-            while (seedValue >= seed ){
-                seedValue =  new PoissonDistribution(seed/2).sample();
+          int loc=0;
+            int seedValue=0;
 
+
+            String input_dist = inputDistribution;
+            switch (inputDistribution){
+                case "Poisson":{
+                     loc = new Random().nextInt(numLoc);
+
+                     seedValue =  new PoissonDistribution(seed/2).sample();
+                    //System.out.println(seedValue);
+                    while (seedValue >= seed ){
+                        seedValue =  new PoissonDistribution(seed/2).sample();
+
+                    }
+                }
+                break;
+
+                case "Random":{
+                    loc = new Random().nextInt(numLoc); // arbitrary location
+                     seedValue = new Random().nextInt(seed); // one of the queries from the given set
+                    while (seedValue >= seed ){
+                        seedValue =  new Random().nextInt(seed);
+                    }
+                }
+                break;
+
+                default: {
+                    loc = new Random().nextInt(numLoc); // arbitrary location
+                    seedValue = new Random().nextInt(seed); // one of the queries from the given set
+                    while (seedValue >= seed ){
+                        seedValue =  new Random().nextInt(seed);
+                    }
             }
-            */
-
-
-            int loc = new Random().nextInt(numLoc); // arbitrary location
-            int seedValue = new Random().nextInt(seed); // one of the queries from the given set
-            while (seedValue >= seed ){
-                seedValue =  new Random().nextInt(seed);
+            break;
             }
 
 

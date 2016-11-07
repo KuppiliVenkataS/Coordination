@@ -9,4 +9,5 @@ public interface InputParameters {
     public static int numLoc = 6;
     public static int cloc_size = 100; //GB
     public static int numTests = 5;
+    String inputDistribution = "Poisson"; // {"Random","Uniform"}
 }

@@ -93,7 +93,7 @@ public class ResponseTime implements InputParameters{
         while (queryNo < seed) {
             for (int i = 0; i < numLoc; i++, queryNo++) {
                 if (queryNo < seed)
-                    cloc_queries[i].add(new Query_Coord(queryNo,""+i,""+queryNo));// MAKE CHANGES HERE
+                    cloc_queries[i].add(getQuery(queryNo));// MAKE CHANGES HERE
             }
 
         }
@@ -101,12 +101,14 @@ public class ResponseTime implements InputParameters{
         System.out.println("*********************************************************");
         System.out.println("loc      query from Master-slave");
 
+        /*
         for (int i = 0; i < numLoc ; i++) {
             for (Query_Coord qc :
                     cloc_queries[i]) {
                 System.out.println(i+"th cloc contains "+qc.getqID());
             }
         }
+        */
 
         //test master-slave with new query input
         for (int i = 0; i < numTests; i++) {
@@ -118,12 +120,12 @@ public class ResponseTime implements InputParameters{
             for (Query_Coord qtemp :
                     testQueries) {
 
-                int queryNum = (int)Integer.parseInt(qtemp.getQuery());
+                int queryNum = Integer.parseInt(qtemp.getQuery());
                 String cloc = getCloc_querynum(queryNum);
 
                 if (qtemp.getLoc().equals(cloc)) {
                     responseTime += 10;
-                  //  System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
+                   // System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
                 } else {
                     responseTime += 100;
                   //  System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
@@ -139,11 +141,12 @@ public class ResponseTime implements InputParameters{
     public void voting(){
         System.out.println( "From Voting");
 
-        //free up cloc queries
-        freeUpCloc_queriesList();
+
+        freeUpCloc_queriesList(); //free up cloc queries for new cache strategies
 
         String[] query_cacheLoc = new String[seed];
 
+        //cache allocation based on the highest bidder
         for (int i = 0; i < seed; i++) {
             int max = -999; int cLoc = 0;
             for (int j = 0; j < uloc_query_freq.length; j++) {
@@ -169,13 +172,13 @@ public class ResponseTime implements InputParameters{
 */
         System.out.println("*********************************************************");
         System.out.println("loc      query from Voting");
-        for (int i = 0; i < numLoc; i++) {
+       /* for (int i = 0; i < numLoc; i++) {
             for (Query_Coord qTemp :
                    cloc_queries[i] ) {
                 System.out.println(i +"   "+qTemp.getqID());
             }
         }
-
+*/
         //test master-slave with new query input
         for (int i = 0; i < numTests; i++) {
 
@@ -183,18 +186,20 @@ public class ResponseTime implements InputParameters{
             ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
             int responseTime = 0;
 
-          /*  for (Query_Coord qtemp :
+            for (Query_Coord qtemp :
                     testQueries) {
 
-                String cloc = getCloc_querynum(qtemp);
+                String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
 
                 if (qtemp.getLoc().equals(cloc)) {
                     responseTime += 10;
+                     System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
                 } else {
                     responseTime += 100;
+                     System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
                 }
             }
-*/
+
             System.out.println(i+"the test -  Response time Voting -- " + responseTime * (1.0) / numQueries);
         }
     }
@@ -232,11 +237,11 @@ public class ResponseTime implements InputParameters{
      * @param queryNum
      * @return
      */
-    public Query_Coord getQuery(int queryNum){
+    public Query_Coord getQuery(int queryNum ){
 
         Query_Coord qtemp = null ;
         for (Query_Coord qc :
-                input.getQueries()) {
+                input.getSeedQueries()) {
             int queryVal = Integer.parseInt(qc.getQuery());
             if (queryVal == queryNum) {
                 qtemp = qc;
@@ -265,7 +270,7 @@ public class ResponseTime implements InputParameters{
         */
 
         rt.master_slave();
-      //  rt.voting();
+        //rt.voting();
 
     }
 }
