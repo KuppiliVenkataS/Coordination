@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 /**
  * Created by santhilata on 04/11/16.
- * This class is to calculate the response time for various
+ * This class is to calculate the response time for various coordination strategies
  */
 public class ResponseTime implements InputParameters{
 
-    Input input; // input for training
+    Input[] input; // input for training
     ArrayList<Query_Coord>[] uloc_queries ;// queries originated from each of the user locations
     ArrayList<Query_Coord>[] cloc_queries;// queries at each of the cache locations
     
@@ -18,7 +18,10 @@ public class ResponseTime implements InputParameters{
     Input[] testInputs = new Input[numTests]; // inputs for testing
 
     public ResponseTime(){
-        this.input = new Input(numQueries,seed,numLoc);
+        this.input = new Input[numTests];
+        for (int i = 0; i < numTests; i++) {
+            this.input[i] = new  Input(numQueries,seed,numLoc);
+        }
 
         this.uloc_queries = new ArrayList[numLoc];
         for (int i = 0; i < numLoc ; i++) {
@@ -250,6 +253,10 @@ public class ResponseTime implements InputParameters{
         }
 
         return  qtemp;
+    }
+
+    public void cacheRefresh_LRU(){
+
     }
 
 

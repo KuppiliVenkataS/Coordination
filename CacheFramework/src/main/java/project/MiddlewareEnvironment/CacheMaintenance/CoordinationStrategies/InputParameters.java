@@ -10,4 +10,6 @@ public interface InputParameters {
     public static int cloc_size = 100; //GB
     public static int numTests = 5;
     String inputDistribution = "Poisson"; // {"Random","Uniform"}
+
+    int freq_threshold = 6;
 }
