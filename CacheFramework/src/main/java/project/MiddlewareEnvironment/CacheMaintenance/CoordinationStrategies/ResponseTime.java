@@ -2,6 +2,7 @@ package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
@@ -197,7 +198,7 @@ public class ResponseTime implements InputParameters{
         for (int i = 0; i < numLoc; i++) {
             for (Query_Coord qc :
                     uLoc_queries[i]) {
-                int qNum = (int) Double.parseDouble(qc.getQuery());
+                int qNum = Integer.parseInt(qc.getQuery());
                 uloc_query_freq[i][qNum] +=1;
             }
 
@@ -285,10 +286,10 @@ public class ResponseTime implements InputParameters{
             }
 
        // }
-
-        for (int i = 0; i < numTests; i++) {
         System.out.println("*********************************************************");
         System.out.println("loc      query from Master-slave");
+
+        for (int i = 0; i < numTests; i++) {
 
         /*
         for (int i = 0; i < numLoc ; i++) {
@@ -314,7 +315,7 @@ public class ResponseTime implements InputParameters{
                     responseTime += 10;
                    // System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
                 } else {
-                    responseTime += 100;
+                    responseTime += Math.abs(Integer.parseInt(qtemp.getLoc())-Integer.parseInt(cloc))*10;
                   //  System.out.println(qtemp.getqID()+" "+qtemp.getLoc()+" "+cloc+" "+responseTime);
                 }
             }
@@ -335,17 +336,13 @@ public class ResponseTime implements InputParameters{
      * else no_vote, add frequency preferences and poll again
      */
     public void voting(){
-
         int yes_vote = numLoc/2+1;
-        int numPolls = 2;
+        System.out.println(yes_vote); // 4 for numLoc = 6
 
         freeUpCloc_queriesList();// to clear caches
         currentSeedQueries = trainInput[0].getSeedQueries();
 
         //create basic master-slave plan
-        // add queries to cache units one per place
-        // for (int i = 0; i < numtrain ; i++) {
-
         int queryNo = 0;
         while (queryNo < seed) {
             for (int j = 0; j < numLoc; j++, queryNo++) {
@@ -356,78 +353,110 @@ public class ResponseTime implements InputParameters{
         }
 
 
-        // vote till polls
-        for (int i = 0; i < numPolls; i++) {
+
+        // now check basic cache arrangement  with testinputs
+        for (int i = 0; i < numTests; i++) {
+
+            int responseTime = 0;
+
+            ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
+            int[] cacheHits = new int[numLoc];
+
+            for (Query_Coord qtemp :
+                    testQueries) {
+                String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
+                if (qtemp.getLoc().equals(cloc)) {
+                    responseTime += 10;
+                    cacheHits[Integer.parseInt(cloc)]++;
+                   //  System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                } else {
+                    responseTime += Math.abs(Integer.parseInt(qtemp.getLoc())-Integer.parseInt(cloc))*10;
+                    // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                }
+            }
+
+            System.out.println(i + "th test -  Response time basic Voting -- " + responseTime * (1.0) / numQueries);
+
             int numVotes = 0;
+            for (int j = 0; j < numLoc; j++) {
+                if (cacheHits[j]>= (numQueries*0.03)) {
+                    System.out.println(j+" inside cache hits "+cacheHits[j]);
 
-            for (int j = 0; j < numTests; j++) { // for each test input
+                    numVotes++;
+                }
+            }
 
-                ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
+           /* if (numVotes >= yes_vote) {
+                System.out.println(" &&&& "+numVotes+ " basic cache set is fine");
+                System.out.println("******************************************************************************");
+            }
 
+            else
+            */
 
-                int responseTime = 0;
-                for (int k = 0; k < numLoc; k++) { // each cache
-                    int cacheHits = 0;
+            { // Arrange another cache arrangement
+                System.out.println("*************************************************************************");
+                freeUpCloc_queriesList();// to clear caches
+                String[] query_cacheLoc = new String[seed];
+                int[][] uloc_query_freq = generateUloc_Query_Freq(trainInput);
 
-                    for (Query_Coord qtemp :
-                            testQueries) {
-
-                        String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
-
-                        if (qtemp.getLoc().equals(cloc)) {
-                            responseTime += 10;
-                            cacheHits++;
-                           // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
-                        } else {
-                            responseTime += 100;
-                           // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                //cache allocation based on the highest bidder
+                for (int ii = 0; ii < seed; ii++) {
+                    int max = -999; int cLoc = 0;
+                    for (int jj = 0; jj < uloc_query_freq.length; jj++) {
+                        if (uloc_query_freq[jj][ii]> max){
+                            max = uloc_query_freq[jj][ii];
+                            cLoc = jj;
                         }
-                    }
 
-                    if (cacheHits>= (numQueries*0.16)) {
-                        System.out.println("inside cache hits "+cacheHits);
+                    }
+                    cloc_queries[cLoc].add(getQueryObject(ii)); // add iith query at jjth location
+
+                }
+
+
+
+                responseTime = 0;
+
+                Arrays.fill(cacheHits,0);
+
+                for (Query_Coord qtemp :
+                        testQueries) {
+                    String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
+                    if (qtemp.getLoc().equals(cloc)) {
+                        responseTime += 10;
+                        cacheHits[Integer.parseInt(cloc)]++;
+                        // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                    } else {
+                        responseTime += Math.abs(Integer.parseInt(qtemp.getLoc())-Integer.parseInt(cloc))*10;
+                        // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                    }
+                }
+
+                System.out.println(i + "th test -  Response time after II round Voting -- " + responseTime * (1.0) / numQueries);
+
+                numVotes = 0;
+                for (int j = 0; j < numLoc; j++) {
+                    if (cacheHits[j]>= (numQueries*0.02)) {
+                       // System.out.println("inside cache hits "+cacheHits[j]);
 
                         numVotes++;
                     }
-                }// for each cache
-                System.out.println(i + "th test -  Response time Voting -- " + responseTime * (1.0) / numQueries);
+                }
+
+
 
                 if (numVotes >= yes_vote) {
-                    System.out.println("Yes vote");
-                    break;
+                    System.out.println(numVotes+" second level cache set is fine");
+                }
+                else {
+                    System.out.println(" &&& "+numVotes+" Second level is also failed");
                 }
 
-                else{
-                    freeUpCloc_queriesList(); //free up cloc queries for new cache strategies
-
-                    String[] query_cacheLoc = new String[seed];
-                    int[][] uloc_query_freq = generateUloc_Query_Freq(trainInput);
-
-                    //cache allocation based on the highest bidder
-                    for (int ii = 0; ii < seed; ii++) {
-                        int max = -999; int cLoc = 0;
-                        for (int jj = 0; jj < uloc_query_freq.length; jj++) {
-                            if (uloc_query_freq[jj][ii]> max){
-                                max = uloc_query_freq[jj][ii];
-                                cLoc = jj;
-                            }
-
-                        }
-                        cloc_queries[cLoc].add(getQueryObject(ii)); // add iith query at jjth location
-
-                    }
-
-                }
-
-
-            }//for each test input
-
+            }
 
 
         }
-
-        // }
-
     }
 
     public void multi_agentPlanning(){
