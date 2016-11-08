@@ -1,31 +1,49 @@
 package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 /**
  * Created by santhilata on 04/11/16.
  * This class is to calculate the response time for various coordination strategies
+ *
  */
 public class ResponseTime implements InputParameters{
 
+    File[] inputFile = new File[8]; //inputFile[0] - inputfile[2] are for training. remaining 5 are for testing
+
+
     Input[] trainInput; // inputs for training
+    Input[] testInputs ; // inputs for testing
+
     ArrayList<Query_Coord>[] uloc_queries ;// queries originated from each of the user locations
     ArrayList<Query_Coord>[] cloc_queries;// queries at each of the cache locations
     ArrayList<Query_Coord> currentSeedQueries;
     
     int[][] uloc_query_freq = new int[numLoc][seed]; // this contains the frequency of a query repeated ata given location
 
-    Input[] testInputs = new Input[numTests]; // inputs for testing
 
-    public ResponseTime(){
-        this.trainInput = new Input[3]; // 3 is the minimum number to have historical information
-        // After every input, input[0] is deleted and other inputs are shifted one place to left.
-        //one testinput is added to trainInput
 
-        for (int i = 0; i < 3; i++) {
-            this.trainInput[i] = new  Input(numQueries,seed,numLoc);
+    public ResponseTime() throws IOException {
+        createInput(); // creates new input files everytime. If you do not want to change input, just put this line in comments
+
+
+        this.trainInput = new Input[numtrain]; // 3 is the minimum number to have historical information
+        for (int i = 0; i < numtrain; i++) {
+            this.trainInput[i] = new Input();
+            trainInput[i].setInput_queries(readQueriesFromFile(inputFile[i]));
+            trainInput[i].setSeedQueries( readQueriesFromFile(new File(inputFolder+"_seed.csv")));
+            currentSeedQueries = readQueriesFromFile(new File(inputFolder+"_seed.csv"));
         }
+
+        testInputs = new Input[numTests];
+        for (int i = 0; i < numTests; i++) {
+            this.testInputs[i] = new Input();
+            testInputs[i].setInput_queries(readQueriesFromFile(inputFile[i+3]));
+        }
+
 
         this.uloc_queries = new ArrayList[numLoc];
         for (int i = 0; i < numLoc ; i++) {
@@ -37,27 +55,92 @@ public class ResponseTime implements InputParameters{
             this.cloc_queries[i] = new ArrayList<>();
         }
 
-        //create test inputs
-        for (int i = 0; i < numTests; i++) {
-            testInputs[i] = createInput(numQueries,seed,numLoc);
+        /*
+        for (int i = 0; i < numtrain; i++) {
+            System.out.println("train input created "+i);
+            Input input_test = trainInput[i];
+            for (Query_Coord qc :
+                    input_test.getQueries()) {
+                System.out.println(qc.toString());
+            }
         }
+        */
+
+
     }
 
 
-    public Input createInput(int numQueries, int seed, int numLoc){
+    public ArrayList<Query_Coord> readQueriesFromFile (File file)throws  IOException {
 
-          return  new Input(numQueries,seed,numLoc);
+        ArrayList<Query_Coord> tempQueries = new ArrayList<>();
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        while((line = br.readLine())!= null){
+            String[] tokens = line.split(Pattern.quote(","));
+            Query_Coord qc = new Query_Coord();
+            qc.setqID(Integer.parseInt(tokens[0]));
+            qc.setLoc(tokens[1]);
+            qc.setQuery(tokens[2]);
+
+            tempQueries.add(qc);
+        }
+
+        return tempQueries;
+
+    }
+
+    // the following is called only once
+    public void createInput() throws IOException {
+        int totalInput = numtrain+numTests; // all input files for training and testing
+        for (int i = 0; i < totalInput; i++) {
+            inputFile[i] = new File(inputFolder+"_"+i+".csv");
+            createInputFile(inputFile[i]);
+        }
+
+        //create seed file
+        File  seedFile = new File (inputFolder+"_seed.csv");
+        createSeedFile(seedFile);
 
 
+
+    }
+
+    public File createInputFile(File file) throws IOException{
+
+        FileWriter fw = new FileWriter(file);
+        Input input = new Input(numQueries,seed,numLoc);
+        for (Query_Coord qc :
+                input.getQueries()) {
+            fw.write(qc.getqID()+","+qc.getLoc()+","+qc.getQuery()+"\n");
+        }
+
+        fw.close();
+        return file;
+
+    }
+
+    public File createSeedFile(File file) throws IOException{
+
+        FileWriter fw = new FileWriter(file);
+        Input input = new Input(numQueries,seed,numLoc);
+        for (Query_Coord qc :
+                input.seedQueries) {
+            fw.write(qc.getqID()+","+qc.getLoc()+","+qc.getQuery()+"\n");
+        }
+
+        fw.close();
+
+        return file;
     }
 
     /**
      * This method essentially generates uloc_query_freq
      */
-    public void generateStats(int window){
+    public void generateStats(int fileNum){
 
 
-        ArrayList<Query_Coord> tempQ = trainInput[window].getQueries();
+        ArrayList<Query_Coord> tempQ = trainInput[fileNum].getQueries();
 
         // location-wise query lists
         for (Query_Coord qc :
@@ -199,9 +282,7 @@ public class ResponseTime implements InputParameters{
         return  qtemp;
     }
 
-    public void cacheRefresh_LRU(){
 
-    }
 
     public void voting(){
 
@@ -219,24 +300,15 @@ public class ResponseTime implements InputParameters{
 
     }
 
-    public static void main(String[] args) {
+    public void cacheRefresh_LRU(){
+
+    }
+
+    public static void main(String[] args) throws IOException {
 
         ResponseTime rt = new ResponseTime();
-
-        rt.generateStats(0);
-
-        int[][] ulocQ_F = rt.getUloc_query_freq();
-/*
-        System.out.println("uloc  query  freq");
-        for (int i = 0; i < ulocQ_F.length; i++) {
-            for (int j = 0; j < ulocQ_F[i].length; j++) {
-                System.out.println(i +"     "+j+"      "+ulocQ_F[i][j]);
-            }
-        }
-        */
-
         rt.master_slave();
-        //rt.voting();
+
 
     }
 }

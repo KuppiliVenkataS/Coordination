@@ -2,6 +2,9 @@ package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,6 +15,9 @@ public class Input implements InputParameters{
     ArrayList<Query_Coord> input_queries ;
     ArrayList<Query_Coord> seedQueries;
 
+    public Input(){
+
+    }
     public Input(int numQueries, int seed, int numLoc){ // n
         input_queries =  new ArrayList<>();
         for (int i = 0; i < numQueries; i++) {
@@ -75,6 +81,14 @@ public class Input implements InputParameters{
     }
     public ArrayList<Query_Coord> getSeedQueries(){
         return seedQueries; }
+
+    public void setInput_queries(ArrayList<Query_Coord> input_queries) {
+        this.input_queries = input_queries;
+    }
+
+    public void setSeedQueries(ArrayList<Query_Coord> seedQueries) {
+        this.seedQueries = seedQueries;
+    }
 }
 
 

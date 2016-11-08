@@ -16,5 +16,6 @@ public interface InputParameters {
 
     int freq_threshold = 6;
 
-    public static  String inputFile = "//home//santhillata//Dropbox//";
+    public static  String inputFolder = "//home//santhilata//Dropbox//CL1//Coordination//CacheFramework//src//main//java//project//MiddlewareEnvironment//CacheMaintenance//CoordinationStrategies//InputFiles//";
+    public static String outputFolder = "//home//santhilata//Dropbox//CL1//Coordination//CacheFramework//src//main//java//project//MiddlewareEnvironment//CacheMaintenance//CoordinationStrategies//OutputFiles//";
 }
