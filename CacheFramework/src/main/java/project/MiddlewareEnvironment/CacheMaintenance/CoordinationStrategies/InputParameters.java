@@ -1,5 +1,7 @@
 package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 
+import java.io.File;
+
 /**
  * Created by santhilata on 07/11/16.
  */
@@ -13,4 +15,6 @@ public interface InputParameters {
     String inputDistribution = "Poisson"; // {"Random","Uniform"}
 
     int freq_threshold = 6;
+
+    public static  String inputFile = "//home//santhillata//Dropbox//";
 }

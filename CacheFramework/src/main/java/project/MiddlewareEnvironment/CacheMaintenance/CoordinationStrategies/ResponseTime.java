@@ -203,6 +203,21 @@ public class ResponseTime implements InputParameters{
 
     }
 
+    public void voting(){
+
+    }
+
+    public void multi_agentPlanning(){
+
+    }
+
+    public void negotiation(){
+
+    }
+
+    public void feedback(){
+
+    }
 
     public static void main(String[] args) {
 
