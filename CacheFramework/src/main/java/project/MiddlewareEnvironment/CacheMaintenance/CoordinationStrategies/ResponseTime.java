@@ -56,6 +56,7 @@ public class ResponseTime implements InputParameters{
         }
 
         /*
+        //to test
         for (int i = 0; i < numtrain; i++) {
             System.out.println("train input created "+i);
             Input input_test = trainInput[i];
@@ -136,6 +137,7 @@ public class ResponseTime implements InputParameters{
 
     /**
      * This method essentially generates uloc_query_freq
+     * CONSIDER FOR DELETION OF THIS METHOD
      */
     public void generateStats(int fileNum){
 
@@ -155,16 +157,105 @@ public class ResponseTime implements InputParameters{
                     uloc_queries[i]) {
                     int qNum = (int) Double.parseDouble(qc.getQuery());
                     uloc_query_freq[i][qNum] +=1;
-
             }
             
         }
-
 
     }
 
     public int[][] getUloc_query_freq(){
         return  this.uloc_query_freq;
+    }
+
+    /**
+     * The following method is create uloc_query frequency
+     * @param inputs
+     * @return
+     */
+    public int[][] generateUloc_Query_Freq(Input[] inputs){
+
+        ArrayList<Query_Coord> queryList = new ArrayList<>();
+        for (int i = 0; i < inputs.length; i++) {
+            queryList.addAll(inputs[i].getQueries());
+        }
+
+        int[][] uloc_query_freq = new int[numLoc][seed];
+
+        ArrayList<Query_Coord>[] uLoc_queries = new ArrayList[numLoc];
+        for (int i = 0; i < numLoc; i++) {
+            uLoc_queries[i] = new ArrayList<>();
+
+        }
+
+        for (Query_Coord qc :
+                queryList) {
+            int loc = Integer.parseInt(qc.getLoc());
+            uLoc_queries[loc].add(qc);
+        }
+
+        //get frequency stats
+        for (int i = 0; i < numLoc; i++) {
+            for (Query_Coord qc :
+                    uLoc_queries[i]) {
+                int qNum = (int) Double.parseDouble(qc.getQuery());
+                uloc_query_freq[i][qNum] +=1;
+            }
+
+        }
+
+        return uloc_query_freq;
+
+    }
+
+
+
+
+    /**
+     * This method is to free up cloc_queries  to enable new caching techniques everytime
+     */
+    public void freeUpCloc_queriesList(){
+        for (int i = 0; i < numLoc ; i++) {
+            this.cloc_queries[i] = new ArrayList<>();
+        }
+    }
+
+
+    /**
+     * The following method returns cache location where the query is stored
+     * @param qc
+     * @return
+     */
+    public String getCloc_querynum(int qc){
+        String cloc = null;
+        Query_Coord qtemp = getQueryObject(qc);
+        for (int i = 0; i < numLoc ; i++) {
+            if (cloc_queries[i].contains(qtemp)){
+                cloc = ""+i;
+                break;
+            }
+        }
+
+        return cloc;
+    }
+
+    /**
+     * to get the query from original input
+     * @param queryNum
+     * @return
+     */
+    public Query_Coord getQueryObject( int queryNum ){
+
+        Query_Coord qtemp = null ;
+        for (Query_Coord qc :
+                currentSeedQueries) {
+            int queryVal = Integer.parseInt(qc.getQuery());
+            if (queryVal == queryNum) {
+                qtemp = qc;
+                break;
+            }
+        }
+
+        return  qtemp;
     }
 
     //master-slave algorithm
@@ -235,56 +326,107 @@ public class ResponseTime implements InputParameters{
 
 
     /**
-     * This method is to free up cloc_queries  to enable new caching techniques everytime
+     * Algorithm for this strategy is to create a basic plan such as master-slave.
+     * for each test input,
+     * All cache agents vote yes or no .
+     * If cache hits are > numQueries/20 per cache site, yes
+     * else no.
+     * if yes_vote, keep the cache plan.
+     * else no_vote, add frequency preferences and poll again
      */
-    public void freeUpCloc_queriesList(){
-        for (int i = 0; i < numLoc ; i++) {
-            this.cloc_queries[i] = new ArrayList<>();
-        }
-    }
-
-
-    /**
-     * The following method returns cache location where the query is stored
-     * @param qc
-     * @return
-     */
-    public String getCloc_querynum(int qc){
-        String cloc = null;
-        Query_Coord qtemp = getQueryObject(qc);
-        for (int i = 0; i < numLoc ; i++) {
-            if (cloc_queries[i].contains(qtemp)){
-                cloc = ""+i;
-                break;
-            }
-        }
-
-        return cloc;
-    }
-
-    /**
-     * to get the query from original input
-     * @param queryNum
-     * @return
-     */
-    public Query_Coord getQueryObject( int queryNum ){
-
-        Query_Coord qtemp = null ;
-        for (Query_Coord qc :
-                currentSeedQueries) {
-            int queryVal = Integer.parseInt(qc.getQuery());
-            if (queryVal == queryNum) {
-                qtemp = qc;
-                break;
-            }
-        }
-
-        return  qtemp;
-    }
-
-
-
     public void voting(){
+
+        int yes_vote = numLoc/2+1;
+        int numPolls = 2;
+
+        freeUpCloc_queriesList();// to clear caches
+        currentSeedQueries = trainInput[0].getSeedQueries();
+
+        //create basic master-slave plan
+        // add queries to cache units one per place
+        // for (int i = 0; i < numtrain ; i++) {
+
+        int queryNo = 0;
+        while (queryNo < seed) {
+            for (int j = 0; j < numLoc; j++, queryNo++) {
+                if (queryNo < seed)
+                    cloc_queries[j].add(getQueryObject( queryNo));// Only once added
+            }
+
+        }
+
+
+        // vote till polls
+        for (int i = 0; i < numPolls; i++) {
+            int numVotes = 0;
+
+            for (int j = 0; j < numTests; j++) { // for each test input
+
+                ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
+
+
+                int responseTime = 0;
+                for (int k = 0; k < numLoc; k++) { // each cache
+                    int cacheHits = 0;
+
+                    for (Query_Coord qtemp :
+                            testQueries) {
+
+                        String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
+
+                        if (qtemp.getLoc().equals(cloc)) {
+                            responseTime += 10;
+                            cacheHits++;
+                           // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                        } else {
+                            responseTime += 100;
+                           // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                        }
+                    }
+
+                    if (cacheHits>= (numQueries*0.16)) {
+                        System.out.println("inside cache hits "+cacheHits);
+
+                        numVotes++;
+                    }
+                }// for each cache
+                System.out.println(i + "th test -  Response time Voting -- " + responseTime * (1.0) / numQueries);
+
+                if (numVotes >= yes_vote) {
+                    System.out.println("Yes vote");
+                    break;
+                }
+
+                else{
+                    freeUpCloc_queriesList(); //free up cloc queries for new cache strategies
+
+                    String[] query_cacheLoc = new String[seed];
+                    int[][] uloc_query_freq = generateUloc_Query_Freq(trainInput);
+
+                    //cache allocation based on the highest bidder
+                    for (int ii = 0; ii < seed; ii++) {
+                        int max = -999; int cLoc = 0;
+                        for (int jj = 0; jj < uloc_query_freq.length; jj++) {
+                            if (uloc_query_freq[jj][ii]> max){
+                                max = uloc_query_freq[jj][ii];
+                                cLoc = jj;
+                            }
+
+                        }
+                        cloc_queries[cLoc].add(getQueryObject(ii)); // add iith query at jjth location
+
+                    }
+
+                }
+
+
+            }//for each test input
+
+
+
+        }
+
+        // }
 
     }
 
@@ -308,6 +450,7 @@ public class ResponseTime implements InputParameters{
 
         ResponseTime rt = new ResponseTime();
         rt.master_slave();
+        rt.voting();
 
 
     }
