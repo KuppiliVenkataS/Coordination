@@ -12,6 +12,7 @@ public class ResponseTime implements InputParameters{
     Input[] trainInput; // inputs for training
     ArrayList<Query_Coord>[] uloc_queries ;// queries originated from each of the user locations
     ArrayList<Query_Coord>[] cloc_queries;// queries at each of the cache locations
+    ArrayList<Query_Coord> currentSeedQueries;
     
     int[][] uloc_query_freq = new int[numLoc][seed]; // this contains the frequency of a query repeated ata given location
 
@@ -93,17 +94,25 @@ public class ResponseTime implements InputParameters{
      *
      */
     public void master_slave(){
-        for (int i = 0; i < numTests; i++) {
+
+        freeUpCloc_queriesList();// to clear caches
+        currentSeedQueries = trainInput[0].getSeedQueries();
+
         // add queries to cache units one per place
-        int queryNo = 0;
-        while (queryNo < seed) {
-            for (int j = 0; j < numLoc;j++, queryNo++) {
-                if (queryNo < seed)
-                    cloc_queries[j].add(getQuery(i,queryNo));// MAKE CHANGES HERE
+       // for (int i = 0; i < numtrain ; i++) {
+
+            int queryNo = 0;
+            while (queryNo < seed) {
+                for (int j = 0; j < numLoc; j++, queryNo++) {
+                    if (queryNo < seed)
+                        cloc_queries[j].add(getQueryObject( queryNo));// Only once added
+                }
+
             }
 
-        }
+       // }
 
+        for (int i = 0; i < numTests; i++) {
         System.out.println("*********************************************************");
         System.out.println("loc      query from Master-slave");
 
@@ -111,14 +120,12 @@ public class ResponseTime implements InputParameters{
         for (int i = 0; i < numLoc ; i++) {
             for (Query_Coord qc :
                     cloc_queries[i]) {
-                System.out.println(i+"th cloc contains "+qc.getqID());
+                System.out.println(i+"th cloc contains "+qc.getQuery());
             }
         }
         */
 
         //test master-slave with new query input
-
-
 
             ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
             int responseTime = 0;
@@ -127,7 +134,7 @@ public class ResponseTime implements InputParameters{
                     testQueries) {
 
                 int queryNum = Integer.parseInt(qtemp.getQuery());
-                String cloc = getCloc_querynum(i,queryNum);
+                String cloc = getCloc_querynum(queryNum);
 
                 if (qtemp.getLoc().equals(cloc)) {
                     responseTime += 10;
@@ -159,9 +166,9 @@ public class ResponseTime implements InputParameters{
      * @param qc
      * @return
      */
-    public String getCloc_querynum(int trainWindow,int qc){
+    public String getCloc_querynum(int qc){
         String cloc = null;
-        Query_Coord qtemp = getQuery(trainWindow,qc);
+        Query_Coord qtemp = getQueryObject(qc);
         for (int i = 0; i < numLoc ; i++) {
             if (cloc_queries[i].contains(qtemp)){
                 cloc = ""+i;
@@ -177,11 +184,11 @@ public class ResponseTime implements InputParameters{
      * @param queryNum
      * @return
      */
-    public Query_Coord getQuery(int trainWindow, int queryNum ){
+    public Query_Coord getQueryObject( int queryNum ){
 
         Query_Coord qtemp = null ;
         for (Query_Coord qc :
-                trainInput[trainWindow].getSeedQueries()) {
+                currentSeedQueries) {
             int queryVal = Integer.parseInt(qc.getQuery());
             if (queryVal == queryNum) {
                 qtemp = qc;
