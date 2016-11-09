@@ -1,5 +1,9 @@
 package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 
+import cern.jet.random.Normal;
+import cern.jet.random.Poisson;
+import cern.jet.random.engine.DRand;
+import cern.jet.random.engine.RandomEngine;
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
 import java.io.File;
@@ -30,6 +34,12 @@ public class Input implements InputParameters{
             String input_dist = inputDistribution;
             switch (inputDistribution){
                 case "Poisson":{
+                    /*
+                    loc = getPoisson(numLoc/2,2,numLoc);
+                    seedValue = getPoisson(seed/2, (int)(seed/3),seed);
+                    System.out.println(loc + " "+seedValue);
+                    */
+
                      loc = new Random().nextInt(numLoc);
                         loc = new PoissonDistribution(numLoc/2).sample();
                     while (loc>= numLoc){
@@ -39,8 +49,8 @@ public class Input implements InputParameters{
                     //System.out.println(seedValue);
                     while (seedValue >= seed ){
                         seedValue =  new PoissonDistribution(seed/2).sample();
-
                     }
+
                 }
                 break;
 
@@ -78,6 +88,25 @@ public class Input implements InputParameters{
             seedQueries.add(qTemp);
 
         }
+
+    }
+
+
+    public int getPoisson(int mean, int variance, int upperBoundary){
+        RandomEngine engine = new DRand();
+        Poisson poisson = new Poisson(mean, engine);
+        int poissonObs = poisson.nextInt();
+        Normal normal = new Normal(mean, variance, engine);
+
+
+        double normalObs = normal.nextDouble();
+        int sample = (int) Math.abs(normalObs);
+
+        while (sample >= upperBoundary) {
+            normalObs = normal.nextDouble();
+            sample = (int) Math.abs(normalObs);
+        }
+        return sample;
 
     }
 

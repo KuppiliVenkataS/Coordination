@@ -478,35 +478,90 @@ public class ResponseTime implements InputParameters{
 
             int[][] uloc_query_freq = generateUloc_Query_Freq(trainInput); // uloc_query_freq is => [loc][seed]
 
-
-
             //cache selection lists
-            int[][] temp_cache_queryLists = new int[numLoc][seed];
-            for (int i = 0; i < numLoc; i++) {
-                //  temp_cache_queryLists[i] = new int[seed];
-                Arrays.fill(temp_cache_queryLists[i],-9999);
+            ArrayList[] temp_query_lists = new ArrayList[seed];
+            for (int i = 0; i < seed; i++) {
+                temp_query_lists[i] = new ArrayList<>();
             }
 
+            // the following lines add all locations for each query
+            for (int i = 0; i < seed; i++) {
+                for (int j = 0; j < numLoc; j++) {
+                    if (uloc_query_freq[j][i]> freq_threshold  ){
+                        temp_query_lists[i].add(j);
+                    }
+                }
+            }
 
-            //each cache agent prepares it's own list
-            for (int i = 0; i < numLoc; i++) {
-                int newVal = 0;
-                for (int j = 0; j < seed; j++) {
-                    if (uloc_query_freq[i][j]>freq_threshold){
-                        temp_cache_queryLists[i][newVal++] = j;
+            //for each query resolve contention
+
+            ArrayList remainingQueries = new ArrayList();
+
+           // System.out.println("------------- Selected queries ----------");
+            for (int i = 0; i < seed; i++) {
+                int max = -9999; int cloc = -8888;
+
+                if (temp_query_lists[i].size()==0){
+                    remainingQueries.add(i);
+                }
+                else {
+                   // System.out.print(i +" ");
+                    for (int j = 0; j < temp_query_lists[i].size(); j++) {
+                        if (uloc_query_freq[j][i] > max) {
+                            max = uloc_query_freq[j][i];
+                            cloc = j;
+                        }
+                    }
+                    cloc_queries[cloc].add(getQueryObject(i)); // add the query to cache location that has highest bidding of frequency
+                }
+
+            }
+            /*
+
+            System.out.println();
+
+
+            System.out.println("___________Remaining queries_____________");
+            for (int i = 0; i < remainingQueries.size(); i++) {
+                System.out.print(remainingQueries.get(i)+" ");
+            }
+            System.out.println();
+            */
+
+            if (option.equals("FCFP")) {
+                //determine which cache has freespace       and fill it up with queries
+                // queries that are not contended are allocated to first come first serve by adding queries in the space
+                int maxQueries = seed / numLoc;
+                Iterator itr = remainingQueries.iterator();
+
+                for (int j = 0; j < numLoc; j++) {
+                    int freespace = 0;
+                    if (cloc_queries[j].size() < maxQueries) {
+                        freespace = maxQueries - cloc_queries[j].size();
+                    }
+
+                    for (int ii = 0; ii < freespace && itr.hasNext(); ii++) {
+                        cloc_queries[j].add(getQueryObject((int) itr.next()));
+                    }
+
+                }
+            }
+
+            else if (option.equals("PRU")) {
+                placeRemainingQueries(remainingQueries,testNo);
+
+
+                for (int k = 0; k < numLoc; k++) {
+                    for (int j = 0; j <cloc_queries[k].size() ; j++) {
+                        System.out.println(k +" --- "+cloc_queries[k].get(j));
                     }
                 }
 
             }
 
-            System.out.println("test num "+testNo);
-            for (int i = 0; i < numLoc; i++) {
-                System.out.println(" LOCATION = "+i);
-                for (int j = 0; j < seed; j++) {
-                    System.out.println(temp_cache_queryLists[i][j]+" ");
-                }
-                System.out.println();
-            }
+
+
+
 
         }
 
