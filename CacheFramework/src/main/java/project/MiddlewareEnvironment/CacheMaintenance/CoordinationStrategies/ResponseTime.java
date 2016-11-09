@@ -338,6 +338,8 @@ public class ResponseTime implements InputParameters{
     public void voting(){
         int yes_vote = numLoc/2+1;
         System.out.println(yes_vote); // 4 for numLoc = 6
+        // now check basic cache arrangement  with testinputs
+        for (int i = 0; i < numTests; i++) {
 
         freeUpCloc_queriesList();// to clear caches
         currentSeedQueries = trainInput[0].getSeedQueries();
@@ -354,8 +356,7 @@ public class ResponseTime implements InputParameters{
 
 
 
-        // now check basic cache arrangement  with testinputs
-        for (int i = 0; i < numTests; i++) {
+
 
             int responseTime = 0;
 

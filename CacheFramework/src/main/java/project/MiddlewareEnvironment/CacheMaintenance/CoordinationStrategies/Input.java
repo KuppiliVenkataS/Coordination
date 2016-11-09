@@ -31,7 +31,10 @@ public class Input implements InputParameters{
             switch (inputDistribution){
                 case "Poisson":{
                      loc = new Random().nextInt(numLoc);
-
+                        loc = new PoissonDistribution(numLoc/2).sample();
+                    while (loc>= numLoc){
+                        loc = new PoissonDistribution(numLoc/2).sample();
+                    }
                      seedValue =  new PoissonDistribution(seed/2).sample();
                     //System.out.println(seedValue);
                     while (seedValue >= seed ){
@@ -43,6 +46,8 @@ public class Input implements InputParameters{
 
                 case "Random":{
                     loc = new Random().nextInt(numLoc); // arbitrary location
+
+
                      seedValue = new Random().nextInt(seed); // one of the queries from the given set
                     while (seedValue >= seed ){
                         seedValue =  new Random().nextInt(seed);
