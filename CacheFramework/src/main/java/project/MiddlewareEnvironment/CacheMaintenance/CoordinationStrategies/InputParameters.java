@@ -15,6 +15,7 @@ public interface InputParameters {
     public String inputDistribution = "Poisson"; // {"Poisson","Random","Uniform","Exponential"}
 
     public  int freq_threshold = 20;
+    public int dataAssociation_threshold = 5;
     public static  String  option = "PRU"; // FCFP -> first come first place , PRU -> place recently used
 
     public static  String inputFolder = "//home//santhilata//Dropbox//CL1//Coordination//CacheFramework//src//main//java//project//MiddlewareEnvironment//CacheMaintenance//CoordinationStrategies//InputFiles//";

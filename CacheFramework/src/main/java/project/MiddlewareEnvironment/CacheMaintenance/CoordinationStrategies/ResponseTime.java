@@ -549,15 +549,42 @@ public class ResponseTime implements InputParameters{
 
             else if (option.equals("PRU")) {
                 placeRemainingQueries(remainingQueries,testNo);
-
+                /*
 
                 for (int k = 0; k < numLoc; k++) {
                     for (int j = 0; j <cloc_queries[k].size() ; j++) {
-                        System.out.println(k +" --- "+cloc_queries[k].get(j));
+
+                        System.out.println(k +" --***- "+cloc_queries[k].get(j).getQuery());
                     }
                 }
+                */
 
             }
+
+            int responseTime = 0;
+
+            ArrayList<Query_Coord> testQueries = testInputs[testNo].getQueries();
+            int[] cacheHits = new int[numLoc];
+
+            for (Query_Coord qtemp :
+                    testQueries) {
+                String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
+               // System.out.println(qtemp.getQuery()+ "    "+cloc);
+                if (qtemp.getLoc().equals(cloc)) {
+                    responseTime += 10;
+                    cacheHits[Integer.parseInt(cloc)] += 1;
+                    //  System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                } else {
+                    if (cloc!= null)
+                        responseTime += Math.abs(Integer.parseInt(qtemp.getLoc())-Integer.parseInt(cloc))*10;
+                    else{
+                        responseTime += numLoc*10;
+                    }
+                    // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                }
+            }
+
+            System.out.println(testNo + " test -  Response time multi-agent planning -- " + responseTime * (1.0) / numQueries);
 
 
 
@@ -567,14 +594,17 @@ public class ResponseTime implements InputParameters{
 
     }
 
+    /**
+     * This method is supposed to place remaining queries according to frequency
+     * and then least recently used
+     * @param remainingQueries
+     * @param i - is the window number (epoch)
+     */
     public void placeRemainingQueries(ArrayList remainingQueries, int i){
 
-
-       // for (int i = 0; i < numTests; i++) {
-
             int[][] uLoc_query_freq = new int[numLoc][seed];
-
             ArrayList<Query_Coord> tempQueries = null;
+
             if (i > 0) {
                 //find uloc_query_freq for a single testinput
 
@@ -587,6 +617,7 @@ public class ResponseTime implements InputParameters{
 
                 }
             } else { // for i=0, use train input data
+
                 uLoc_query_freq = generateUloc_Query_Freq(trainInput);
             }
 
@@ -594,23 +625,39 @@ public class ResponseTime implements InputParameters{
 
             for (int j = 0; j < remainingQueries.size(); j++) {
                 int caloc = -999; int max = -99999;
+                int remainQuery = (int)remainingQueries.get(j);
                 for (int k = 0; k < numLoc; k++) {
-                    if (uLoc_query_freq[k][j] > max) {
-                        max = uLoc_query_freq[k][j];
+                    if (uLoc_query_freq[k][remainQuery] > max) {
+                        max = uLoc_query_freq[k][remainQuery];
 
                         caloc = k;
 
                     }
 
                 }
-              //  System.out.println(remainingQueries.size()+" DIRTY ANSWERS        "+caloc);
-                cloc_queries[caloc].add(getQueryObject(j));
+
+                cloc_queries[caloc].add(getQueryObject(remainQuery));
             }
         //}
     }
 
-    public void negotiation(){
 
+    /**
+     * This method finds data associations among seed queries - frequency of togetherness
+     * Each cache gets a
+     */
+    public void negotiation(){
+        //create association matrix
+
+        int[][] association_matrix = new int[seed][seed];
+        for (int i = 0; i < trainInput.length; i++) {
+            ArrayList<Query_Coord> testQueries = trainInput[i].getQueries();
+            for (int j = 0; j < seed; j++) {
+                for (int k = 0; k < seed; k++) {
+
+                }
+            }
+        }
     }
 
     public void feedback(){
