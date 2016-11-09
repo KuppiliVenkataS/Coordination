@@ -376,7 +376,7 @@ public class ResponseTime implements InputParameters{
                 }
             }
 
-            System.out.println(i + "th test -  Response time basic Voting -- " + responseTime * (1.0) / numQueries);
+            System.out.println(i + " test -  Response time basic Voting -- " + responseTime * (1.0) / numQueries);
 
             int numVotes = 0;
             for (int j = 0; j < numLoc; j++) {
@@ -434,7 +434,7 @@ public class ResponseTime implements InputParameters{
                     }
                 }
 
-                System.out.println(i + "th test -  Response time after II round Voting -- " + responseTime * (1.0) / numQueries);
+                System.out.println(i + " test -  Response time after II round Voting -- " + responseTime * (1.0) / numQueries);
 
                 numVotes = 0;
                 for (int j = 0; j < numLoc; j++) {
@@ -460,8 +460,36 @@ public class ResponseTime implements InputParameters{
         }
     }
 
+    /**
+     * Each cache sends a list based on some local threshold based on time and frequency and storage
+     * Initial set up is with voting (frequency based)
+     *
+     */
     public void multi_agentPlanning(){
+        freeUpCloc_queriesList(); //  free up all caches
 
+        //create uloc_query_freq
+        int[][] uloc_query_freq = generateUloc_Query_Freq(trainInput); // uloc_query_freq is => [loc][seed]
+
+        //cache selection lists
+        int[][] temp_cache_queryLists = new int[numLoc][seed];
+        for (int i = 0; i < numLoc; i++) {
+            Arrays.fill(temp_cache_queryLists,-9999);
+        }
+
+
+
+        //each ache agent prepares it's own list
+
+        for (int i = 0; i < numLoc; i++) {
+            int newVal = 0;
+            for (int j = 0; j < seed; j++) {
+                if (uloc_query_freq[i][j]>freq_threshold){
+                    temp_cache_queryLists[i][newVal++] = j;
+                }
+            }
+
+        }
     }
 
     public void negotiation(){
