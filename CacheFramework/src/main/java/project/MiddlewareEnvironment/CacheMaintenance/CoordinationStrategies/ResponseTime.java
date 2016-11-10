@@ -1,10 +1,9 @@
 package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 
+import project.SupportSystem.MapUtil;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -650,24 +649,182 @@ public class ResponseTime implements InputParameters{
      */
     public void negotiation(){
 
-        ArrayList twoQueries = new ArrayList();
-        ArrayList[] threeQueries; // = new ArrayList[twoQueries.size()];
-        ArrayList fourQueries ; // new ArrayList[threeQueries]
+        System.out.println("************** NEGOTIATION *********************");
+        //create association matrix
 
-        //create one itemList
+        int[][] association_matrix = new int[seed][seed];
+        ArrayList<Query_Coord>[] tempCacheLists = new ArrayList[numLoc];
+        for (int i = 0; i < trainInput.length; i++) {
+            ArrayList<Query_Coord> testQueries = trainInput[i].getQueries();
+
+            for (int j = 0; j < testQueries.size(); j++) {
+                for (int k = j+1; k < testQueries.size(); k++) {
+                    int j1 = Integer.parseInt(testQueries.get(j).getQuery());
+                    int k1 = Integer.parseInt(testQueries.get(k).getQuery());
+                    if(j1 != k1){
+                        association_matrix[j1][k1] +=1;
+                        association_matrix[k1][j1] = association_matrix[j1][k1];
+                    }
+
+                }
+            }
+
+        }
+
+        freeUpCloc_queriesList(); // free up caches
+        // first allocate queries to caches according to master/slave
+        int queryNo = 0;
+        while (queryNo < seed) {
+            for (int j = 0; j < numLoc; j++, queryNo++) {
+                if (queryNo < seed)
+                    cloc_queries[j].add(getQueryObject( queryNo));// Only once added
+            }
+
+        }
+
+        //for each cache, check associations and create contention lists
+        int max_queriesAtaCache = numQueries/numLoc;
 
 
+        Map<Integer,Long>[] tempCacheRequirementMaps = new HashMap[numLoc];
+        ArrayList frequentQueries = new ArrayList();
+
+        //check cache associations among themselves
+        for (int i = 0; i < numLoc; i++) {
+
+             tempCacheRequirementMaps[i] = new HashMap<>();
+
+
+
+            for (Query_Coord qtemp :
+                    cloc_queries[i]) {
+
+                int j = Integer.parseInt(qtemp.getQuery());
+
+                int max = 0;
+                for (int k = j + 1; k < seed; k++) {
+                    if (association_matrix[j][k] > max) {
+                        max = association_matrix[j][k];
+
+                    }
+
+                }
+
+
+                max = max/2;
+
+                // add all querys that have  associations more than max/2 &&  combine all lists
+                for (int k = j; k < seed; k++) {
+
+
+                    if (association_matrix[j][k] > max ){
+                        if (!frequentQueries.contains(k)) frequentQueries.add(k);
+
+                        if (!tempCacheRequirementMaps[i].containsKey(k)) {
+                            tempCacheRequirementMaps[i].put(k, (long)association_matrix[j][k]);
+                           // System.out.println(i + " " + j + " " + k + " " + association_matrix[j][k] + " " + max);
+                        }
+                        else {
+                            tempCacheRequirementMaps[i].put(k, (tempCacheRequirementMaps[i].get(k)+association_matrix[j][k]));
+                        }
+                    }
+
+
+                }
+
+
+
+            }
+            tempCacheRequirementMaps[i] = MapUtil.sortByValue(tempCacheRequirementMaps[i]);
+
+        }
+
+        ArrayList remainingQueries = new ArrayList();
+        for (int i = 0; i < seed; i++) {
+            if (!frequentQueries.contains(i)) remainingQueries.add(i);
+        }
+
+
+        //No re assign queries to caches
+     //   freeUpCloc_queriesList(); //free up all memory
+
+
+
+        for (int j = 0; j < seed; j++) {
+
+            if (frequentQueries.contains(j)){
+
+                long max = 0L; int loc = -999;
+                for (int i = 0; i < numLoc; i++) {
+
+                    if (tempCacheRequirementMaps[i].containsKey(j)){
+                        if (tempCacheRequirementMaps[i].get(j) > max){
+                            max = tempCacheRequirementMaps[i].get(j);
+                            loc = i;
+                        }
+                    }
+                }
+                if (!cloc_queries[loc].contains(getQueryObject(j))) {
+                    cloc_queries[loc].add(getQueryObject(j));
+
+                   // System.out.println("adding " + j + " at " + loc);
+                }
+
+                for (int i = 0; i < numLoc; i++) {
+                    if (i != loc && cloc_queries[i].contains(getQueryObject(j))){
+                        cloc_queries[i].remove(getQueryObject(j));
+                    }
+                }
+
+            }
+
+        }
+        // now worry about remaining queries
+
+
+
+
+        //calculate response time
+        for (int testNo = 0; testNo < numTests; testNo++) {
+
+
+            int responseTime = 0;
+
+            ArrayList<Query_Coord> testQueries = testInputs[testNo].getQueries();
+            int[] cacheHits = new int[numLoc];
+
+            for (Query_Coord qtemp :
+                    testQueries) {
+                String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
+                // System.out.println(qtemp.getQuery()+ "    "+cloc);
+                if (qtemp.getLoc().equals(cloc)) {
+                    responseTime += 10;
+                    cacheHits[Integer.parseInt(cloc)] += 1;
+                    //  System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                } else {
+                    if (cloc != null)
+                        responseTime += Math.abs(Integer.parseInt(qtemp.getLoc()) - Integer.parseInt(cloc)) * 10;
+                    else {
+                        responseTime += numLoc * 10;
+                    }
+                    // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                }
+            }
+
+            System.out.println(testNo + " test -  Response time negotiation  -- " + responseTime * (1.0) / numQueries);
+
+        }
 
     }
 
-    public void createOneItemList(Input input){
+    public ArrayList createOneItemList(Input input){
         int[] query_freq = new int[seed];
-        HashMap<ArrayList<Query_Coord>,Integer> query_frequency = new HashMap<>();
+
 
         ArrayList tempList = new ArrayList();
         ArrayList<Query_Coord> testQueries = input.getQueries();
 
-        for (int largeList = 0; largeList < numQueries/numLoc; largeList++) {
+       // for (int largeList = 0; largeList < numQueries/numLoc; largeList++) {
 
             for (int j = 0; j < testQueries.size(); j++) {
                 int id = Integer.parseInt(testQueries.get(j).getQuery());
@@ -679,9 +836,12 @@ public class ResponseTime implements InputParameters{
                 }
             }
             if (tempList.size() > 0) query_freq = new int[tempList.size()];
-        }
+       // }
 
+        return  tempList;
     }
+
+
 
     public void feedback(){
 
@@ -690,7 +850,8 @@ public class ResponseTime implements InputParameters{
     public void cacheRefresh_LRU(){
 
     }
-    
+
+
 
 
     public static void main(String[] args) throws IOException {
