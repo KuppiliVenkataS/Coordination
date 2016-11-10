@@ -644,20 +644,43 @@ public class ResponseTime implements InputParameters{
 
     /**
      * This method finds data associations among seed queries - frequency of togetherness
-     * Each cache gets a
+     * Each cache gets highly associated query lists
+     * contention is resolved by number of queries a cache can have
+     * and associations at lower levels
      */
     public void negotiation(){
-        //create association matrix
 
-        int[][] association_matrix = new int[seed][seed];
-        for (int i = 0; i < trainInput.length; i++) {
-            ArrayList<Query_Coord> testQueries = trainInput[i].getQueries();
-            for (int j = 0; j < seed; j++) {
-                for (int k = 0; k < seed; k++) {
+        ArrayList twoQueries = new ArrayList();
+        ArrayList[] threeQueries; // = new ArrayList[twoQueries.size()];
+        ArrayList fourQueries ; // new ArrayList[threeQueries]
 
+        //create one itemList
+
+
+
+    }
+
+    public void createOneItemList(Input input){
+        int[] query_freq = new int[seed];
+        HashMap<ArrayList<Query_Coord>,Integer> query_frequency = new HashMap<>();
+
+        ArrayList tempList = new ArrayList();
+        ArrayList<Query_Coord> testQueries = input.getQueries();
+
+        for (int largeList = 0; largeList < numQueries/numLoc; largeList++) {
+
+            for (int j = 0; j < testQueries.size(); j++) {
+                int id = Integer.parseInt(testQueries.get(j).getQuery());
+                query_freq[j] += 1;
+            }
+            for (int i = 0; i < seed; i++) {
+                if (query_freq[i] > freq_threshold) {
+                    tempList.add(query_freq[i]);
                 }
             }
+            if (tempList.size() > 0) query_freq = new int[tempList.size()];
         }
+
     }
 
     public void feedback(){
@@ -677,6 +700,6 @@ public class ResponseTime implements InputParameters{
         rt.voting();
         rt.multi_agentPlanning();
 
-
+        rt.negotiation();
     }
 }
