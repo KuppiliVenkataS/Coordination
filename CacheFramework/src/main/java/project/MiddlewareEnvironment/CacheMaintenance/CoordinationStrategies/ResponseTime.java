@@ -3,6 +3,7 @@ package project.MiddlewareEnvironment.CacheMaintenance.CoordinationStrategies;
 import project.SupportSystem.MapUtil;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -22,12 +23,24 @@ public class ResponseTime implements InputParameters{
     ArrayList<Query_Coord>[] uloc_queries ;// queries originated from each of the user locations
     ArrayList<Query_Coord>[] cloc_queries;// queries at each of the cache locations
     ArrayList<Query_Coord> currentSeedQueries;
-    
-    int[][] uloc_query_freq = new int[numLoc][seed]; // this contains the frequency of a query repeated ata given location
+    DecimalFormat df = new DecimalFormat("#.00");
 
-   //
 
-    public ResponseTime() throws IOException {
+    int[][] uloc_query_freq ; // this contains the frequency of a query repeated ata given location
+
+    int numLoc;
+    int seed;
+    int numQueries;
+    String inputDistribution;
+
+
+    public ResponseTime(String repeat, int numQ, int numCache, int numseed) throws IOException {
+        uloc_query_freq =  new int[numLoc][seed];
+        this.numLoc = numCache;
+        this.inputDistribution = repeat;
+        this.numQueries = numQ;
+        this.seed = numseed;
+
         createInput(); // creates new input files everytime. If you do not want to change input, just put this line in comments
 
 
@@ -35,8 +48,8 @@ public class ResponseTime implements InputParameters{
         for (int i = 0; i < numtrain; i++) {
             this.trainInput[i] = new Input();
             trainInput[i].setInput_queries(readQueriesFromFile(inputFile[i]));
-            trainInput[i].setSeedQueries( readQueriesFromFile(new File(inputFolder+"_seed.csv")));
-            currentSeedQueries = readQueriesFromFile(new File(inputFolder+"_seed.csv"));
+            trainInput[i].setSeedQueries( readQueriesFromFile(new File("_seed.csv")));
+            currentSeedQueries = readQueriesFromFile(new File("_seed.csv"));
         }
 
         testInputs = new Input[numTests];
@@ -57,9 +70,8 @@ public class ResponseTime implements InputParameters{
         }
 
 
-        
 
-        /*
+/*
         //to test
         for (int i = 0; i < numtrain; i++) {
             System.out.println("train input created "+i);
@@ -69,8 +81,8 @@ public class ResponseTime implements InputParameters{
                 System.out.println(qc.toString());
             }
         }
-        */
 
+*/
 
     }
 
@@ -99,12 +111,14 @@ public class ResponseTime implements InputParameters{
     public void createInput() throws IOException {
         int totalInput = numtrain+numTests; // all input files for training and testing
         for (int i = 0; i < totalInput; i++) {
-            inputFile[i] = new File(inputFolder+"_"+i+".csv");
+            //inputFile[i] = new File(inputFolder+"_"+i+".csv");
+            inputFile[i] = new File("_"+i+".csv");
             createInputFile(inputFile[i]);
         }
 
         //create seed file
-        File  seedFile = new File (inputFolder+"_seed.csv");
+       // File  seedFile = new File (inputFolder+"_seed.csv");
+        File  seedFile = new File ("_seed.csv");
         createSeedFile(seedFile);
 
 
@@ -114,7 +128,8 @@ public class ResponseTime implements InputParameters{
     public File createInputFile(File file) throws IOException{
 
         FileWriter fw = new FileWriter(file);
-        Input input = new Input(numQueries,seed,numLoc);
+       // System.out.println(" from responsetime - 128 "+numQueries+" "+seed+" "+numLoc+" "+inputDistribution);
+        Input input = new Input(numQueries,seed,numLoc,inputDistribution);
         for (Query_Coord qc :
                 input.getQueries()) {
             fw.write(qc.getqID()+","+qc.getLoc()+","+qc.getQuery()+"\n");
@@ -128,7 +143,7 @@ public class ResponseTime implements InputParameters{
     public File createSeedFile(File file) throws IOException{
 
         FileWriter fw = new FileWriter(file);
-        Input input = new Input(numQueries,seed,numLoc);
+        Input input = new Input(numQueries,seed,numLoc,inputDistribution);
         for (Query_Coord qc :
                 input.seedQueries) {
             fw.write(qc.getqID()+","+qc.getLoc()+","+qc.getQuery()+"\n");
@@ -271,9 +286,12 @@ public class ResponseTime implements InputParameters{
      * create new input -
      *
      */
-    public HashMap<String,Double> master_slave(){
+    public Result master_slave(){
 
-        HashMap<String,Double> responseTime_query  = new HashMap<>();
+        double res = 0.0;
+       // HashMap<String,Double> responseTime_query  = new HashMap<>();
+        int messages = 0;
+
         freeUpCloc_queriesList();// to clear caches
         currentSeedQueries = trainInput[0].getSeedQueries();
 
@@ -285,9 +303,11 @@ public class ResponseTime implements InputParameters{
                 for (int j = 0; j < numLoc; j++, queryNo++) {
                     if (queryNo < seed)
                         cloc_queries[j].add(getQueryObject( queryNo));// Only once added
+
                 }
 
             }
+            messages = numLoc;
 
        // }
         System.out.println("*************************MASTER-SLAVE********************************");
@@ -331,13 +351,17 @@ public class ResponseTime implements InputParameters{
                 }
             }
 
-            double res = responseTime * (1.0) / numQueries;
-            System.out.println(i+"the test -  Response time Master-slave -- " + res);
-            responseTime_query.put("Master/slave",res);
+             res += responseTime * (1.0) / numQueries;
+            System.out.println(i+"the test -  Response time Master/slave -- " + responseTime * (1.0) / numQueries);
 
+           // System.out.println("res = "+responseTime);
         }
 
-        return  responseTime_query;
+        res = res/numTests;
+
+
+
+        return  new Result(res,messages);
     }
 
 
@@ -350,9 +374,11 @@ public class ResponseTime implements InputParameters{
      * if yes_vote, keep the cache plan.
      * else no_vote, add frequency preferences and poll again
      */
-    public HashMap<String,Double> voting(){
+    public Result voting(){
 
-        HashMap<String,Double> responseTime_query = new HashMap<>();
+       // HashMap<String,Double> responseTime_query = new HashMap<>();
+        double res = 0.0;
+        int messages = 0;
 
         System.out.println("*************************VOTING********************************");
         int yes_vote = numLoc/2+1;
@@ -373,51 +399,50 @@ public class ResponseTime implements InputParameters{
 
         }
 
+        messages = numLoc;
 
+        int responseTime = 0;
 
+        ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
+        int[] cacheHits = new int[numLoc];
 
-
-            int responseTime = 0;
-
-            ArrayList<Query_Coord> testQueries = testInputs[i].getQueries();
-            int[] cacheHits = new int[numLoc];
-
-            for (Query_Coord qtemp :
-                    testQueries) {
-                String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
-                if (qtemp.getLoc().equals(cloc)) {
-                    responseTime += 10;
-                    cacheHits[Integer.parseInt(cloc)]++;
-                   //  System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
-                } else {
-                   // responseTime +=100;
+        for (Query_Coord qtemp :
+                testQueries) {
+            String cloc = getCloc_querynum(Integer.parseInt(qtemp.getQuery()));
+            if (qtemp.getLoc().equals(cloc)) {
+                responseTime += 10;
+                cacheHits[Integer.parseInt(cloc)]++;
+               //  System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+            } else {
+               // responseTime +=100;
+                if (cloc != null)
+                    responseTime += Math.abs(Integer.parseInt(qtemp.getLoc()) - Integer.parseInt(cloc)) * 10;
+                else {
+                 //   responseTime +=100;
                     if (cloc != null)
                         responseTime += Math.abs(Integer.parseInt(qtemp.getLoc()) - Integer.parseInt(cloc)) * 10;
                     else {
-                     //   responseTime +=100;
-                        if (cloc != null)
-                            responseTime += Math.abs(Integer.parseInt(qtemp.getLoc()) - Integer.parseInt(cloc)) * 10;
-                        else {
-                            responseTime +=100;
-                            // responseTime += numLoc * 10;
-                        }
+                        responseTime +=100;
                         // responseTime += numLoc * 10;
                     }
-                   // responseTime += Math.abs(Integer.parseInt(qtemp.getLoc())-Integer.parseInt(cloc))*10;
-                    // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
+                    // responseTime += numLoc * 10;
                 }
+               // responseTime += Math.abs(Integer.parseInt(qtemp.getLoc())-Integer.parseInt(cloc))*10;
+                // System.out.println(qtemp.getqID() + " " + qtemp.getLoc() + " " + cloc + " " + responseTime);
             }
+        }
 
            // System.out.println(i + " test -  Response time basic Voting -- " + responseTime * (1.0) / numQueries);
 
-            int numVotes = 0;
-            for (int j = 0; j < numLoc; j++) {
-                if (cacheHits[j]>= (numQueries*0.03)) {
-                  //  System.out.println(j+" inside cache hits "+cacheHits[j]);
+        int numVotes = 0;
+        for (int j = 0; j < numLoc; j++) {
+            if (cacheHits[j]>= (numQueries*0.03)) {
+              //  System.out.println(j+" inside cache hits "+cacheHits[j]);
 
-                    numVotes++;
-                }
+                numVotes++;
             }
+        }
+        messages += numLoc ; // receive votes
 
            /* if (numVotes >= yes_vote) {
                 System.out.println(" &&&& "+numVotes+ " basic cache set is fine");
@@ -448,7 +473,7 @@ public class ResponseTime implements InputParameters{
                 }
 
 
-
+                messages += numLoc;
                 responseTime = 0;
 
                 Arrays.fill(cacheHits,0);
@@ -473,9 +498,9 @@ public class ResponseTime implements InputParameters{
                     }
                 }
 
-                double res = responseTime * (1.0) / numQueries;
-                System.out.println(i+"the test -  Response time Voting -- " + res);
-                responseTime_query.put("Voting",res);
+                 res += responseTime * (1.0) / numQueries;
+                System.out.println(i+"the test -  Response time Voting -- " + responseTime * (1.0) / numQueries);
+               // responseTime_query.put("Voting",res);
 
                 numVotes = 0;
                 for (int j = 0; j < numLoc; j++) {
@@ -500,7 +525,7 @@ public class ResponseTime implements InputParameters{
 
         }
 
-        return responseTime_query;
+        return new Result(res/numTests,messages);
     }
 
     /**
@@ -508,9 +533,11 @@ public class ResponseTime implements InputParameters{
      * Initial set up is with voting (frequency based)
      *
      */
-    public HashMap<String,Double> multi_agentPlanning(){
+    public Result multi_agentPlanning(){
 
-        HashMap<String,Double> responseTime_query = new HashMap<>();
+        //HashMap<String,Double> responseTime_query = new HashMap<>();
+        double res= 0.0;
+        int messages = 0;
 
         System.out.println("************** MULTI AGENT PLANNING *********************");
         for (int testNo = 0; testNo < numTests; testNo++) {
@@ -632,13 +659,13 @@ public class ResponseTime implements InputParameters{
                 }
             }
 
-            double res = responseTime * (1.0) / numQueries;
-            System.out.println(testNo+"the test -  Response time Multi-agent -- " + res);
-            responseTime_query.put("Multi-agent",res);
+             res += responseTime * (1.0) / numQueries;
+            System.out.println(testNo+"the test -  Response time Multi-agent -- " + responseTime * (1.0) / numQueries);
+            //responseTime_query.put("Multi-agent",res);
 
         }
 
-        return  responseTime_query;
+        return  new Result(res/numTests,2*numLoc);
 
     }
 
@@ -696,9 +723,11 @@ public class ResponseTime implements InputParameters{
      * contention is resolved by number of queries a cache can have
      * and associations at lower levels
      */
-    public HashMap<String,Double> negotiation(){
+    public Result negotiation(){
 
-        HashMap<String,Double> responseTime_query = new HashMap<>();
+        //HashMap<String,Double> responseTime_query = new HashMap<>();
+        double res = 0.0;
+        int messages = 0;
         System.out.println("************** NEGOTIATION *********************");
         //create association matrix
 
@@ -778,6 +807,7 @@ public class ResponseTime implements InputParameters{
         }
         //******************************************************************
 
+        messages += 2*numLoc;
         //for each cache, check associations and create contention lists
         int max_queriesAtaCache = numQueries/numLoc;
 
@@ -803,7 +833,7 @@ public class ResponseTime implements InputParameters{
                     }
                 }
 
-               // max = max/2;
+
 
                 // add all querys that have  associations more than max/2 for each of them &&  combine all lists
                 for (int k = j; k < seed; k++) {
@@ -812,6 +842,7 @@ public class ResponseTime implements InputParameters{
 
                         if (!tempCacheRequirementMaps[i].containsKey(k)) {
                             tempCacheRequirementMaps[i].put(k, (long)association_matrix[j][k]);
+
                            // System.out.println(i + " " + j + " " + k + " " + association_matrix[j][k] + " " + max);
                         }
                         else {
@@ -829,15 +860,8 @@ public class ResponseTime implements InputParameters{
 
         }
 
-        /*
-        ArrayList remainingQueries = new ArrayList();
-        for (int i = 0; i < seed; i++) {
-            if (!frequentQueries.contains(i)) remainingQueries.add(i);
-        }
-
-*/
-        //No re assign queries to caches
-     //   freeUpCloc_queriesList(); //free up all memory
+        //Now re-assign queries to caches
+        //freeUpCloc_queriesList(); //free up all memory
 
 
 
@@ -857,6 +881,7 @@ public class ResponseTime implements InputParameters{
                 }
                 if (!cloc_queries[loc].contains(getQueryObject(j))) {
                     cloc_queries[loc].add(getQueryObject(j));
+                    messages +=1;
 
                    // System.out.println("adding " + j + " at " + loc);
                 }
@@ -864,15 +889,13 @@ public class ResponseTime implements InputParameters{
                 for (int i = 0; i < numLoc; i++) {
                     if (i != loc && cloc_queries[i].contains(getQueryObject(j))){
                         cloc_queries[i].remove(getQueryObject(j));
+                        messages += 1;
                     }
                 }
 
             }
 
         }
-        // now worry about remaining queries
-
-
 
 
         //calculate response time
@@ -909,13 +932,13 @@ public class ResponseTime implements InputParameters{
                 }
             }
 
-            double res = responseTime * (1.0) / numQueries;
-            System.out.println(testNo+"the test -  Response time feedback -- " + res);
-            responseTime_query.put("Feedback",res);
+             res += responseTime * (1.0) / numQueries;
+            System.out.println(testNo+"the test -  Response time feedback -- " + responseTime * (1.0) / numQueries);
+           // responseTime_query.put("Feedback",res);
 
         }
 
-        return responseTime_query;
+        return new Result(res/numTests,messages);
     }
 
     public ArrayList createOneItemList(Input input){
@@ -944,10 +967,11 @@ public class ResponseTime implements InputParameters{
 
 
 
-    public HashMap<String,Double> feedback(){
+    public Result feedback(){
 
-        HashMap<String,Double> responseTime_query = new HashMap<>();
-
+       // HashMap<String,Double> responseTime_query = new HashMap<>();
+        double res= 0.0;
+        int messages = 0;
 
         System.out.println("************** FEEDBACK NEGOTIATION *********************");
         //create association matrix
@@ -1026,6 +1050,8 @@ public class ResponseTime implements InputParameters{
                 cloc_queries[cloc].add(getQueryObject(i)); // add the query to cache location that has highest bidding of frequency
             }
         }
+
+        messages += 2;
         //******************************************************************
 
         //for each cache, check associations and create contention lists
@@ -1107,13 +1133,14 @@ public class ResponseTime implements InputParameters{
                 }
                 if (!cloc_queries[loc].contains(getQueryObject(j))) {
                     cloc_queries[loc].add(getQueryObject(j));
-
+                    messages += 1;
                     // System.out.println("adding " + j + " at " + loc);
                 }
 
                 for (int i = 0; i < numLoc; i++) {
                     if (i != loc && cloc_queries[i].contains(getQueryObject(j))){
                         cloc_queries[i].remove(getQueryObject(j));
+                        messages +=1;
                     }
                 }
 
@@ -1155,12 +1182,12 @@ public class ResponseTime implements InputParameters{
                 }
             }
 
-            double res = responseTime * (1.0) / numQueries;
-            System.out.println(testNo+"the test -  Response time feedback -- " + res);
-            responseTime_query.put("Feedback",res);
+            res += responseTime * (1.0) / numQueries;
+            System.out.println(testNo+"the test -  Response time feedback -- " + responseTime * (1.0) / numQueries);
+            //responseTime_query.put("Feedback",res);
 
         }
-        return  responseTime_query;
+        return  new Result(res/numTests, messages);
 
     }
 
@@ -1170,29 +1197,83 @@ public class ResponseTime implements InputParameters{
 
     }
 
-    
+    class Result{
+        double res;
+        int messages;
 
+        public Result(double res, int messages) {
+            this.res = res;
+            this.messages = messages;
+        }
 
+        public double getRes() {
+            return res;
+        }
+
+        public void setRes(double res) {
+            this.res = res;
+        }
+
+        public int getMessages() {
+            return messages;
+        }
+
+        public void setMessages(int messages) {
+            this.messages = messages;
+        }
+    }
 
     public static void main(String[] args) throws IOException {
 
-        ResponseTime rt = new ResponseTime();
-        File outputFile = new File(outputFolder+"output.csv");
+
+        File outputFile = new File("output_bigger.csv");
         FileWriter fw = new FileWriter(outputFile);
-        fw.write("Repeatability,Strategy,NumQueries,numCache,ResponseTime,numMessages\n");
+        fw.write("Repeatability,Strategy,NumQueries,numCache,numSeeds,ResponseTime,numMessages\n");
+
         String[] repeatability = {"Poisson","Random","Uniform","Exponential"};
         String[] Strategy = {"Master/slave","Voting","Multi-agent","Negotiation","Feedback"};
-        int[] numQ = {1000,2000, 5000, 7000, 10000, 15000};
-        int[] numcache = {6,12,15,20,25,30};
-        int[] numSeeds ={25,50,75,100,150};
+        int[] numQ = {20000,25000 ,30000, 35000};
+        int[] numcache = {35,40,50,55};
+        int[] numSeeds ={175, 200,250};
 
-        HashMap<String,Double> resposeTime_queryMain;
+        DecimalFormat df = new DecimalFormat("#0.00");
+       //double responseTime_queryMain = 0.0;
+        Result result;
+
+        for (int i = 0; i < repeatability.length; i++) {
+            for (int j = 0; j < numQ.length; j++) {
+                for (int k = 0; k < numcache.length; k++) {
+                    for (int l = 0; l < numSeeds.length; l++) {
+                        String repeat = repeatability[i];
+                        int numQuery = numQ[j];
+                        int numcaches = numcache[k];
+                        int numSeed = numSeeds[l];
+                        ResponseTime rt = new ResponseTime(repeat,numQuery,numcaches,numSeed);
+                        result = rt.master_slave();
+                        System.out.println(repeat+",Master/slave,"+numQuery+","+numcaches+","+numSeed+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        fw.append(repeat+",Master/slave,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+
+                        result = rt.voting();
+                        System.out.println(repeat+",voting,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        fw.append(repeat+",Voting,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        result = rt.multi_agentPlanning();
+                        System.out.println(repeat+",Multi-agent,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        fw.append(repeat+",Multi-agent,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+
+                        result = rt.negotiation();
+                        System.out.println(repeat+",negotiation,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        fw.append(repeat+",Negotiation,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        result = rt.feedback();
+                        System.out.println(repeat+",feedback,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
+                        fw.append(repeat+",feedback,"+numQuery+","+numcaches+","+numSeed+","+df.format(result.getRes())+","+result.getMessages()+"\n");
 
 
-        rt.master_slave();
-        rt.voting();
-        rt.multi_agentPlanning();
-        rt.negotiation();
-        rt.feedback();
+                    }
+                }
+            }
+        }
+
+        System.out.println("Done");
+        fw.close();
     }
 }

@@ -4,7 +4,9 @@ import cern.jet.random.Normal;
 import cern.jet.random.Poisson;
 import cern.jet.random.engine.DRand;
 import cern.jet.random.engine.RandomEngine;
+import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.commons.math3.distribution.PoissonDistribution;
+import org.apache.commons.math3.distribution.UniformIntegerDistribution;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -22,7 +24,7 @@ public class Input implements InputParameters{
     public Input(){
 
     }
-    public Input(int numQueries, int seed, int numLoc){ // n
+    public Input(int numQueries, int seed, int numLoc, String inputDistribution){ // n
         input_queries =  new ArrayList<>();
         for (int i = 0; i < numQueries; i++) {
 
@@ -65,6 +67,32 @@ public class Input implements InputParameters{
                 }
                 break;
 
+                case "Uniform":{
+                    loc = new Random().nextInt(numLoc); // arbitrary location
+                    loc = new UniformIntegerDistribution(0,numLoc).sample();
+                    while(loc>=numLoc){
+                        loc = new UniformIntegerDistribution(0,numLoc).sample();
+                    }
+
+                    seedValue = new UniformIntegerDistribution(0,seed).sample(); // one of the queries from the given set
+                    while (seedValue >= seed ){
+                        seedValue =  new UniformIntegerDistribution(0,seed).sample();
+                    }
+                }
+                break;
+
+                case "Exponential":{
+                    loc = new Random().nextInt(numLoc); // arbitrary location
+
+
+                    seedValue = (int)new ExponentialDistribution(seed/2.5).sample(); // one of the queries from the given set
+                    while (seedValue >= seed ){
+                        seedValue =  (int)new ExponentialDistribution(seed/2.5).sample();
+                    }
+                }
+                break;
+
+
                 default: {
                     loc = new Random().nextInt(numLoc); // arbitrary location
                     seedValue = new Random().nextInt(seed); // one of the queries from the given set
@@ -77,11 +105,13 @@ public class Input implements InputParameters{
 
 
             String query = ""+seedValue;
+            //System.out.println(i+" "+loc+" from input.java 104  "+query);
             Query_Coord qctemp = new Query_Coord(i,loc+"",query); // here i is the qId, which runs from 0 to numQueries
 
             input_queries.add(qctemp);
         }
 
+       // System.out.println("From input.java 109 "+input_queries.size());
         seedQueries = new ArrayList<>();
         for (int i = 0; i < seed ; i++) {
             Query_Coord qTemp = new Query_Coord(i,""+i,""+i);
