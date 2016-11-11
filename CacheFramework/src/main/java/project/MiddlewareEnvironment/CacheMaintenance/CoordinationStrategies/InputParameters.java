@@ -12,7 +12,7 @@ public interface InputParameters {
     public static int cloc_size = 100; //GB
     public static int numTests = 5;
     public static int numtrain =3;
-    public String inputDistribution = "Random"; // {"Poisson","Random","Uniform","Exponential"}
+    public String inputDistribution = "Poisson"; // {"Poisson","Random","Uniform","Exponential"}
 
     public  int freq_threshold = 20;
     public int dataAssociation_threshold = 5;
