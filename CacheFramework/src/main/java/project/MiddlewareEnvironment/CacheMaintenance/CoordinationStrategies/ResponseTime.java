@@ -1226,7 +1226,7 @@ public class ResponseTime implements InputParameters{
     public static void main(String[] args) throws IOException {
 
 
-        File outputFile = new File("output_bigger.csv");
+        File outputFile = new File("output_temp.csv");
         FileWriter fw = new FileWriter(outputFile);
         fw.write("Repeatability,Strategy,NumQueries,numCache,numSeeds,ResponseTime,numMessages\n");
 
@@ -1239,7 +1239,7 @@ public class ResponseTime implements InputParameters{
         DecimalFormat df = new DecimalFormat("#0.00");
        //double responseTime_queryMain = 0.0;
         Result result;
-
+/*
         for (int i = 0; i < repeatability.length; i++) {
             for (int j = 0; j < numQ.length; j++) {
                 for (int k = 0; k < numcache.length; k++) {
@@ -1270,6 +1270,37 @@ public class ResponseTime implements InputParameters{
 
                     }
                 }
+            }
+        }
+*/
+
+        for (int i = 0; i < repeatability.length; i++) {
+
+
+            for (int numQuery = 1000; numQuery < 5000; numQuery += 1000) {
+                 String repeat = repeatability[i];
+
+                int numcaches = 6;
+                int numSeed = 25;
+                ResponseTime rt = new ResponseTime(repeat, numQuery, 6, 25);
+                result = rt.master_slave();
+                System.out.println(repeat + ",Master/slave," + numQuery + "," + numcaches + "," + numSeed + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                fw.append(repeat + ",Master/slave," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+
+                result = rt.voting();
+                System.out.println(repeat + ",voting," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                fw.append(repeat + ",Voting," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                result = rt.multi_agentPlanning();
+                System.out.println(repeat + ",Multi-agent," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                fw.append(repeat + ",Multi-agent," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+
+                result = rt.negotiation();
+                System.out.println(repeat + ",negotiation," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                fw.append(repeat + ",Negotiation," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                result = rt.feedback();
+                System.out.println(repeat + ",feedback," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+                fw.append(repeat + ",feedback," + numQuery + "," + numcaches + "," + numSeed + "," + df.format(result.getRes()) + "," + result.getMessages() + "\n");
+
             }
         }
 
